@@ -44,11 +44,23 @@
 			case 'hiring':
 			case 'hire':
 				return '👥';
+			case 'developed':
+			case 'develop':
+				return '🤝';
+			case 'designed':
+			case 'design':
+				return '🛠️';
+			case 'researched':
+			case 'research':
+				return '🔎';
+			case 'integrated':
+			case 'integrate':
+				return '🔗';
 			case 'cleaned':
 			case 'clean':
 				return '🧼';
 			default:
-				return '•';
+				return '🔹';
 		}
 	}
 </script>
