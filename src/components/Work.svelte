@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Hideable from './Hideable.svelte';
 
 	export let position: string = '';
 	export let company: string = '';
@@ -72,7 +71,6 @@
 </script>
 
 <div class="work-experience">
-	<Hideable showHint>
 		<div class="flex font-bold mb-2 print:mb-1">
 			<div class="flex-1 text-left">
 				{#if isBartender}
@@ -97,7 +95,6 @@
 				</li>
 			{/each}
 		</ul>
-	</Hideable>
 </div>
 
 <style lang="postcss">
