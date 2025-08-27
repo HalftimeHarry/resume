@@ -7,6 +7,7 @@
 	export let linkedin: string = '';
 	export let location: string = '';
 	export let website: string = '';
+	$: hasRight = Boolean(github || website || linkedin);
 </script>
 
 <div class="flex flex-wrap flex-col sm:flex-row print:flex-row text-sm sm:text-base">
@@ -23,19 +24,27 @@
 		<span class="block -mt-1 text-base lg:text-lg">({nickname})</span>
 	</h2>
 
+	{#if hasRight}
 	<div class="flex-1 text-left sm:text-right print:text-right sm:py-4 w-48 text-sm sm:text-base">
+		{#if github}
 		<p>
 			<a href={`https://github.com/${github}`} target="_blank" rel="noreferrer"
 				>github.com/{github}</a
 			>
 		</p>
+		{/if}
+		{#if website}
 		<p>
 			<a href={`https://${website}`} target="_blank" rel="noreferrer">{website}</a>
 		</p>
+		{/if}
+		{#if linkedin}
 		<p>
 			<a href={`https://linkedin.com/in/${linkedin}`} target="_blank" rel="noreferrer">Linkedin</a>
 		</p>
+		{/if}
 	</div>
+	{/if}
 </div>
 
 <style lang="postcss">

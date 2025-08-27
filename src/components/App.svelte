@@ -16,6 +16,8 @@
 		workExperiences = [],
 		educations = [],
 		interests = [],
+		documents = [],
+		media = [],
 		resumeUrl: { sourceLink = '', fullVersionLink = '' } = {}
 	} = profile || {});
 
@@ -25,6 +27,7 @@
 		const resp = await fetch('/data/profile.json');
 		return await resp.json();
 	}
+
 </script>
 
 <!-- Remove this is you does not want Kofi widget on your site -->
@@ -33,7 +36,7 @@
 {/if}
 
 <header class="web-only text-center p-4 sm:p-6 bg-green-400 text-white w-screen">
-	<h1 class="text-4xl">Resumette</h1>
+	<h1 class="text-4xl">Resume</h1>
 	<h3>
 		<button on:click={() => window.print()} class="underline text-lg">[Print]</button>
 	</h3>
@@ -49,88 +52,135 @@
 <main class="text-center p-4 m-0 md:m-8 xl:mx-auto max-w-screen-xl">
 	<Intro {...intro} />
 
-	<section>
-		<Hideable>
-			<h2 class="text-2xl print:text-4xl uppercase text-left">Technologies and Languages</h2>
-			<hr />
-			<ul class="text-left list-disc pl-8">
-				{#each technologies as tech}
-					<Hideable>
-						<li>
-							<span class="w-28 inline-block">{tech.section}</span>
-							<span>{tech.details}</span>
-						</li>
-					</Hideable>
-				{/each}
-			</ul>
-		</Hideable>
-	</section>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 print:block print-cols">
+		<div class="space-y-4">
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">📋</span>Overview</h2>
+					<hr />
+					<ul class="text-left list-disc pl-8 space-y-3">
+						{#each technologies as tech}
+							<Hideable>
+								<li>
+									<span class="block font-semibold">{tech.section}</span>
+									<span class="block mt-1 leading-relaxed">{tech.details}</span>
+								</li>
+							</Hideable>
+						{/each}
+					</ul>
+				</Hideable>
+			</section>
 
-	<section>
-		<Hideable>
-			<h2 class="text-2xl print:text-4xl uppercase text-left">Education</h2>
-			<hr />
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">🎓</span>Education</h2>
+					<hr />
 
-			<ul class="text-left list-disc pl-8">
-				{#each educations as edu}
-					<Hideable>
-						<li>
-							<strong>{edu.head}</strong>, {edu.details}
-						</li>
-					</Hideable>
-				{/each}
-			</ul>
-		</Hideable>
-	</section>
+					<ul class="text-left list-disc pl-8">
+						{#each educations as edu}
+							<Hideable>
+								<li>
+									<strong>{edu.head}</strong>, {edu.details}
+								</li>
+							</Hideable>
+						{/each}
+					</ul>
+				</Hideable>
+			</section>
 
-	<section>
-		<Hideable>
-			<h2 class="text-2xl print:text-4xl uppercase text-left">Work Experience</h2>
-			<hr />
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">⭐</span>Interests</h2>
+					<hr />
 
-			{#each workExperiences as exp}
-				<Work {...exp} />
-			{/each}
-		</Hideable>
-	</section>
+					<ul class="text-left list-disc pl-8">
+						{#each interests as interest}
+							<Hideable>
+								<li>
+									{interest}
+								</li>
+							</Hideable>
+						{/each}
+					</ul>
 
-	<section>
-		<Hideable>
-			<h2 class="text-2xl print:text-4xl uppercase text-left">Projects</h2>
-			<hr />
+					{#if media.length}
+						<div class="mt-4 space-y-2">
+							{#each media as m}
+								<Hideable hide={m.hide}>
+									<div class="text-left">
+										<strong class="block mb-1">{m.name}</strong>
+										<div class="web-only">
+											<video
+												src={m.url}
+												autoplay
+												muted
+												playsinline
+												controls
+												class="mx-auto w-full max-w-xs sm:max-w-sm">
+												<track kind="captions" label="No captions" />
+												Sorry, your browser doesn't support embedded videos.
+											</video>
+										</div>
+									</div>
+								</Hideable>
+							{/each}
+						</div>
+					{/if}
+				</Hideable>
+			</section>
+		</div>
 
-			<ul class="text-left list-disc pl-8">
-				{#each projects as project}
-					<Hideable hide={project.hide}>
-						<li>
-							<strong>{project.name}</strong>
-							- {project.details}
-							<a href="https://{project.url}" target="_blank" rel="noreferrer"
-								><strong>{project.url}</strong></a
-							>
-						</li>
-					</Hideable>
-				{/each}
-			</ul>
-		</Hideable>
-	</section>
+		<div class="space-y-4">
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">💼</span>Work Experience</h2>
+					<hr />
 
-	<section>
-		<Hideable>
-			<h2 class="text-2xl print:text-4xl uppercase text-left">Interests</h2>
-			<hr />
+					{#each workExperiences as exp}
+						<Work {...exp} />
+					{/each}
+				</Hideable>
+			</section>
 
-			<ul class="text-left list-disc pl-8">
-				{#each interests as interest}
-					<Hideable>
-						<li>
-							{interest}
-						</li>
-					</Hideable>
-				{/each}
-			</ul>
-		</Hideable>
-	</section>
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">🚀</span>Projects</h2>
+					<hr />
+
+					<ul class="text-left list-disc pl-8">
+						{#each projects as project}
+							<Hideable hide={project.hide}>
+								<li>
+									<strong>{project.name}</strong>
+									- {project.details}
+									<a
+										href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
+										target="_blank"
+										rel="noreferrer"><strong>{project.url}</strong></a>
+								</li>
+							</Hideable>
+						{/each}
+					</ul>
+				</Hideable>
+			</section>
+
+			<section>
+				<Hideable>
+					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">📄</span>Documents</h2>
+					<hr />
+					<ul class="text-left list-disc pl-8">
+						{#each documents as doc}
+							<Hideable hide={doc.hide}>
+								<li>
+									<a href={doc.url} target="_blank" rel="noreferrer"><strong>{doc.name}</strong></a>
+								</li>
+							</Hideable>
+						{/each}
+					</ul>
+				</Hideable>
+			</section>
+		</div>
+	</div>
 
 	<footer class="print-only">
 		(See <a href={fullVersionLink} target="_blank" rel="noopener">full version</a>
@@ -148,7 +198,7 @@
 	}
 
 	section {
-		@apply my-4;
+		@apply my-6;
 	}
 
 	section h2 {
@@ -177,21 +227,41 @@
 			display: none;
 		}
 
+		/* Use full page width and reduce outer constraints */
+		main {
+			margin: 0;
+			padding: 0.25in;
+			max-width: 100% !important;
+			width: 100% !important;
+		}
+
+		/* Two printed columns with balancing */
+		.print-cols {
+			columns: 2;
+			column-gap: 1.5rem;
+		}
+
 		ul {
 			@apply pl-6;
 		}
 
 		section {
-			@apply my-2;
+			margin: 0.2in 0;
+			padding-top: 0.08in;
+			padding-bottom: 0.14in;
+			/* allow sections to break across columns to reduce wasted space */
+			break-inside: auto;
 		}
 
 		section hr {
-			@apply mt-0 mb-1;
-		}
-
-		main {
-			margin: 0 0;
-			padding: 0;
+			@apply mt-0 mb-3;
 		}
 	}
+
+	/* Print page size/margins */
+	@page {
+		size: letter;
+		margin: 0.25in;
+	}
+
 </style>

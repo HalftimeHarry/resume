@@ -5,6 +5,8 @@ export interface IProfileResp {
 	workExperiences: IWorkExperience[];
 	educations: IEducation[];
 	interests: string[];
+	documents?: IDocument[];
+	media?: IMedia[];
 	resumeUrl: {
 		sourceLink: string;
 		fullVersionLink: string;
@@ -44,4 +46,17 @@ export interface IWorkExperience {
 export interface IEducation {
 	head: string;
 	details: string;
+}
+
+export interface IDocument {
+	name: string;
+	url: string; // absolute or relative path
+	hide?: boolean;
+}
+
+export interface IMedia {
+	name: string;
+	url: string; // absolute or relative path
+	type?: string; // e.g., 'video/quicktime'
+	hide?: boolean;
 }
