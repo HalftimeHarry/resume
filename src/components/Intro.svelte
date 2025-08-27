@@ -7,7 +7,8 @@
 	export let linkedin: string = '';
 	export let location: string = '';
 	export let website: string = '';
-	$: hasRight = Boolean(github || website || linkedin);
+	export let availability: string = '';
+	$: hasRight = Boolean(github || website || linkedin || availability);
 </script>
 
 <div class="flex flex-wrap flex-col sm:flex-row print:flex-row text-sm sm:text-base">
@@ -41,6 +42,11 @@
 		{#if linkedin}
 		<p>
 			<a href={`https://linkedin.com/in/${linkedin}`} target="_blank" rel="noreferrer">Linkedin</a>
+		</p>
+		{/if}
+		{#if availability}
+		<p class="mt-1">
+			<strong>Availability:</strong> {availability}
 		</p>
 		{/if}
 	</div>

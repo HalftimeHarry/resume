@@ -21,6 +21,7 @@ export interface IIntro {
 	linkedin: string;
 	location: string;
 	website: string;
+	availability?: string;
 }
 
 export interface IProject {
