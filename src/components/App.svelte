@@ -80,21 +80,15 @@
 	}
 
 	function getOverviewIcon(details: string): string {
-		const first = (details || '').trim().split(/\s+/)[0]?.toLowerCase().replace(/[^a-z]/g, '') || '';
-		switch (first) {
-			case 'seasoned':
-				return '🎯';
-			case 'inventory':
-				return '📦';
-			case 'proactive':
-				return '⭐';
-			case 'thursday':
-			case 'monday':
-			case 'wednesday':
-				return '🗓️';
-			default:
-				return '🔹';
-		}
+		const text = (details || '').toLowerCase();
+		// Schedule keywords anywhere in the string
+		if (/monday|tuesday|wednesday|thursday|friday|saturday|sunday/.test(text)) return '🗓️';
+		// Other common cues from first word
+		const first = text.trim().split(/\s+/)[0]?.replace(/[^a-z]/g, '') || '';
+		if (first === 'seasoned') return '🎯';
+		if (first === 'inventory') return '📦';
+		if (first === 'proactive') return '⭐';
+		return '🔹';
 	}
 </script>
 
