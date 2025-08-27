@@ -79,6 +79,16 @@
 		return '•';
 	}
 
+	type TechLike = { section?: string; details: string };
+	function getTechIcon(tech: TechLike): string {
+		const section = (tech.section || '').toLowerCase();
+		if (section.startsWith('skills')) return '🛠️';
+		if (section.startsWith('objective')) return '🎯';
+		if (section.startsWith('summary')) return '⭐';
+		if (section.startsWith('desired schedule')) return '🗓️';
+		return getOverviewIcon(tech.details);
+	}
+
 	function getOverviewIcon(details: string): string {
 		const text = (details || '').toLowerCase();
 		// Schedule keywords anywhere in the string
@@ -126,7 +136,7 @@
 						{#each technologies as tech}
 							<li>
 								<div class="flex items-start gap-2">
-									<span class="mt-0.5" aria-hidden="true">{getOverviewIcon(tech.details)}</span>
+									<span class="mt-0.5" aria-hidden="true">{getTechIcon(tech)}</span>
 									<span class="font-semibold">{tech.section}</span>
 								</div>
 								<span class="block mt-1 leading-relaxed">{tech.details}</span>
