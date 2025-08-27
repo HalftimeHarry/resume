@@ -8,7 +8,7 @@
 	export let location: string = '';
 	export let website: string = '';
 	export let availability: string = '';
-	$: hasRight = Boolean(github || website || linkedin || availability);
+	$: hasRight = Boolean(github || website || linkedin);
 </script>
 
 <div class="flex flex-wrap flex-col sm:flex-row print:flex-row text-sm sm:text-base">
@@ -39,8 +39,14 @@
 		class="flex-none order-first sm:order-none print:order-none text-4xl sm:text-2xl md:text-3xl lg:text-6xl text-center p-4 print:pt-0"
 	>
 		{name}
-		<span class="block -mt-1 text-base lg:text-lg">({nickname})</span>
+		{#if nickname}
+		<div class="block -mt-1 text-base lg:text-lg italic text-gray-600 dark:text-gray-300">{nickname}</div>
+		{/if}
 	</h2>
+
+	{#if availability}
+	<div class="w-full text-center -mt-2 mb-2"><span class="inline-block text-xs sm:text-sm px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700"><strong>Availability:</strong> {availability}</span></div>
+	{/if}
 
 	{#if hasRight}
 	<div class="flex-1 text-left sm:text-right print:text-right sm:py-4 w-48 text-sm sm:text-base">
@@ -61,15 +67,7 @@
 			<a href={`https://linkedin.com/in/${linkedin}`} target="_blank" rel="noreferrer">Linkedin</a>
 		</p>
 		{/if}
-		{#if availability}
-		<p class="mt-1 flex items-center gap-2">
-			<svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-				<circle cx="12" cy="12" r="10"/>
-				<path d="M12 6v6l4 2"/>
-			</svg>
-			<strong>Availability:</strong> {availability}
-		</p>
-		{/if}
+
 	</div>
 	{/if}
 </div>
