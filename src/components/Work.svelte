@@ -70,7 +70,7 @@
 	}
 </script>
 
-<div class="work-experience">
+<div class="work-experience border border-gray-300/70 dark:border-gray-600/60 rounded-md p-3 sm:p-4 bg-white/70 dark:bg-white/5" data-company={company}>
 		<div class="flex font-bold mb-2 print:mb-1">
 			<div class="flex-1 text-left">
 				{#if isBartender}
@@ -89,8 +89,8 @@
 			<div class="flex-1 text-right">{years.join('-')}</div>
 		</div>
 		<ul class="text-left pl-8 print:pl-6">
-			{#each details as detail}
-				<li>
+			{#each details as detail, i}
+				<li data-index={i}>
 					<span class="mr-2" aria-hidden="true">{getIconFor(detail)}</span>{detail}
 				</li>
 			{/each}
