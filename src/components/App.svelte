@@ -8,7 +8,6 @@
 
 	let profile: IProfileResp;
 	let isDark = false;
-	let printDate = '';
 	let showBackToTop = false;
 
 	$: dataLink = `${sourceLink}/blob/main/static/data/profile.json`;
@@ -30,13 +29,6 @@
 	const stored = localStorage.getItem('theme');
 	isDark = (stored ? stored : 'dark') === 'dark';
 	applyTheme();
-	// set today's date for print footer
-	try {
-	 const now = new Date();
-	 printDate = now.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-	} catch (e) {
-	 printDate = new Date().toISOString().slice(0, 10);
-		}
 	// ensure print happens in light mode
 	window.addEventListener('beforeprint', () => {
 		document.documentElement.classList.remove('dark');
@@ -260,9 +252,6 @@
 	</button>
 {/if}
 
-<footer class="print-only print-footer text-center">
-	Printed on {printDate}
-</footer>
 
 <style lang="postcss">
 	main {
@@ -310,18 +299,6 @@
 			display: inherit;
 		}
 
-		.print-footer {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			padding: 0.15in 0;
-			text-align: center;
-			border-top: 1px solid #000;
-			background: #fff;
-			color: #000;
-			font-size: 10px;
-		}
 
 		:global(.web-only) {
 			display: none;
