@@ -119,54 +119,48 @@
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 print:block print-cols">
 		<div class="space-y-4">
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">📋</span>Overview</h2>
 					<hr />
 					<ul class="text-left pl-8 space-y-3">
 						{#each technologies as tech}
-							<Hideable>
-								<li>
-									<div class="flex items-start gap-2">
-										<span class="mt-0.5" aria-hidden="true">{getOverviewIcon(tech.details)}</span>
-										<span class="font-semibold">{tech.section}</span>
-									</div>
-									<span class="block mt-1 leading-relaxed">{tech.details}</span>
-								</li>
-							</Hideable>
+							<li>
+								<div class="flex items-start gap-2">
+									<span class="mt-0.5" aria-hidden="true">{getOverviewIcon(tech.details)}</span>
+									<span class="font-semibold">{tech.section}</span>
+								</div>
+								<span class="block mt-1 leading-relaxed">{tech.details}</span>
+							</li>
 						{/each}
 					</ul>
 				</Hideable>
 			</section>
 
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">🎓</span>Education</h2>
 					<hr />
 
 					<ul class="text-left pl-8 icon-list icon-education">
 						{#each educations as edu}
-							<Hideable>
-								<li>
-									<strong>{edu.head}</strong>, {edu.details}
-								</li>
-							</Hideable>
+							<li>
+								<strong>{edu.head}</strong>, {edu.details}
+							</li>
 						{/each}
 					</ul>
 				</Hideable>
 			</section>
 
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">⭐</span>Interests</h2>
 					<hr />
 
 					<ul class="text-left pl-8">
 						{#each interests as interest}
-							<Hideable>
-								<li>
-									<span class="mr-2" aria-hidden="true">{getInterestIcon(interest)}</span>{interest}
-								</li>
-							</Hideable>
+							<li>
+								<span class="mr-2" aria-hidden="true">{getInterestIcon(interest)}</span>{interest}
+							</li>
 						{/each}
 					</ul>
 
@@ -199,7 +193,7 @@
 
 		<div class="space-y-4">
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">💼</span>Work Experience</h2>
 					<hr />
 
@@ -210,38 +204,34 @@
 			</section>
 
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">🚀</span>Projects</h2>
 					<hr />
 
 					<ul class="text-left pl-8 icon-list icon-projects">
 						{#each projects as project}
-							<Hideable hide={project.hide}>
-								<li>
-									<strong>{project.name}</strong>
-									- {project.details}
-									<a
-										href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
-										target="_blank"
-										rel="noreferrer"><strong>{project.url}</strong></a>
-								</li>
-							</Hideable>
+							<li>
+								<strong>{project.name}</strong>
+								- {project.details}
+								<a
+									href={project.url.startsWith('http') ? project.url : `https://${project.url}`}
+									target="_blank"
+									rel="noreferrer"><strong>{project.url}</strong></a>
+							</li>
 						{/each}
 					</ul>
 				</Hideable>
 			</section>
 
 			<section>
-				<Hideable>
+				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">📄</span>Documents</h2>
 					<hr />
 					<ul class="text-left pl-8 docs-list icon-list icon-docs">
 						{#each documents as doc}
-							<Hideable hide={doc.hide}>
-								<li>
-									<a href={doc.url} target="_blank" rel="noreferrer"><strong>{doc.name}</strong></a>
-								</li>
-							</Hideable>
+							<li>
+								<a href={doc.url} target="_blank" rel="noreferrer"><strong>{doc.name}</strong></a>
+							</li>
 						{/each}
 					</ul>
 				</Hideable>

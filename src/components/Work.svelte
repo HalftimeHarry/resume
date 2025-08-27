@@ -72,7 +72,7 @@
 </script>
 
 <div class="work-experience">
-	<Hideable>
+	<Hideable showHint>
 		<div class="flex font-bold mb-2 print:mb-1">
 			<div class="flex-1 text-left">
 				{#if isBartender}
@@ -92,11 +92,9 @@
 		</div>
 		<ul class="text-left pl-8 print:pl-6">
 			{#each details as detail}
-				<Hideable>
-					<li>
-						<span class="mr-2" aria-hidden="true">{getIconFor(detail)}</span>{detail}
-					</li>
-				</Hideable>
+				<li>
+					<span class="mr-2" aria-hidden="true">{getIconFor(detail)}</span>{detail}
+				</li>
 			{/each}
 		</ul>
 	</Hideable>
