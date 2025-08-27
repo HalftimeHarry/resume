@@ -85,7 +85,7 @@
 		if (/monday|tuesday|wednesday|thursday|friday|saturday|sunday/.test(text)) return '🗓️';
 		// Other common cues from first word
 		const first = text.trim().split(/\s+/)[0]?.replace(/[^a-z]/g, '') || '';
-		if (first === 'seasoned') return '🎯';
+		if (first === 'seasoned' || first === 'experienced') return '🎯';
 		if (first === 'inventory') return '📦';
 		if (first === 'proactive') return '⭐';
 		return '🔹';
