@@ -82,10 +82,10 @@
 	type TechLike = { section?: string; details: string };
 	function getTechIcon(tech: TechLike): string {
 		const section = (tech.section || '').toLowerCase();
-		if (section.startsWith('skills')) return '🛠️';
-		if (section.startsWith('objective')) return '🎯';
-		if (section.startsWith('summary')) return '⭐';
-		if (section.startsWith('desired schedule')) return '🗓️';
+		if (section.includes('skill')) return '🛠️';
+		if (section.includes('objective')) return '🎯';
+		if (section.includes('summary')) return '⭐';
+		if (section.includes('schedule')) return '🗓️';
 		return getOverviewIcon(tech.details);
 	}
 
