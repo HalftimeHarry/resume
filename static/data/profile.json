@@ -121,7 +121,7 @@
       "name": "In Action",
       "url": "/images/dd_pic.MOV",
       "type": "video/quicktime",
-      "hide": false
+      "hide": true
     }
   ],
   "resumeUrl": {
