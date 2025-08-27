@@ -134,7 +134,7 @@
 					<hr />
 					<ul class="text-left pl-8 space-y-3">
 						{#each technologies as tech}
-							<li>
+							<li class="border border-gray-300/70 dark:border-gray-600/60 rounded-md p-3 sm:p-4 bg-white/70 dark:bg-white/5">
 								<div class="flex items-start gap-2">
 									<span class="mt-0.5" aria-hidden="true">{getTechIcon(tech)}</span>
 									<span class="font-semibold">{tech.section}</span>
