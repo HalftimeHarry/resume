@@ -70,7 +70,7 @@
 	}
 </script>
 
-<div class="work-experience">
+<div class="work-experience border border-gray-300/70 dark:border-gray-600/60 rounded-md p-3 sm:p-4 bg-white/70 dark:bg-white/5">
 		<div class="flex font-bold mb-2 print:mb-1">
 			<div class="flex-1 text-left">
 				{#if isBartender}
