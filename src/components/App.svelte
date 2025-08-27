@@ -213,7 +213,7 @@
 				</Hideable>
 			</section>
 
-			<section>
+			<section class="projects-section">
 				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">🚀</span>Projects</h2>
 					<hr />
@@ -343,6 +343,24 @@
 
 		ul {
 			@apply pl-6;
+		}
+
+		/* Avoid splitting list items across pages */
+		.work-experience li,
+		.icon-list li {
+			break-inside: avoid;
+		}
+
+		/* Force a new page before Projects section */
+		.projects-section {
+			break-before: page;
+			page-break-before: always; /* legacy */
+		}
+
+		/* Add a page break after specific bullet in Red Tracton’s, to separate nicely */
+		.work-experience[data-company^="Red Tracton"] li[data-index="6"] {
+			break-after: page;
+			page-break-after: always; /* legacy */
 		}
 
 		section {
