@@ -8,6 +8,7 @@
 	export let location: string = '';
 	export let website: string = '';
 	export let availability: string = '';
+	export let tenure: string = '';
 	$: hasRight = Boolean(github || website || linkedin);
 </script>
 
@@ -45,7 +46,10 @@
 	</h2>
 
 	{#if availability}
-	<div class="w-full text-center -mt-2 mb-2"><span class="inline-block text-xs sm:text-sm px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700"><strong>Availability:</strong> {availability}</span></div>
+	<div class="w-full order-last text-center mt-1"><span class="inline-block max-w-full break-words text-xs sm:text-sm px-2 py-0.5 rounded bg-gray-200 dark:bg-gray-700"><strong>Availability:</strong> {availability}</span></div>
+	{/if}
+	{#if tenure}
+	<div class="w-full order-last text-center mt-1 mb-2"><span class="inline-block max-w-full break-words text-xs sm:text-sm px-2 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{tenure}</span></div>
 	{/if}
 
 	{#if hasRight}

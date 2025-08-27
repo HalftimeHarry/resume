@@ -22,6 +22,7 @@ export interface IIntro {
 	location: string;
 	website: string;
 	availability?: string;
+	tenure?: string;
 }
 
 export interface IProject {

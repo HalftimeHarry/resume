@@ -202,7 +202,7 @@
 		</div>
 
 		<div class="space-y-4">
-			<section>
+			<section class="work-section">
 				<Hideable showHint>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">💼</span>Work Experience</h2>
 					<hr />
@@ -355,6 +355,13 @@
 		.projects-section {
 			break-before: page;
 			page-break-before: always; /* legacy */
+			margin-top: 0.35in;
+		}
+
+		/* Push Work section to new column and add top spacing */
+		.work-section {
+			break-before: column;
+			margin-top: 0.35in;
 		}
 
 		/* Add a page break after specific bullet in Red Tracton’s, to separate nicely */
