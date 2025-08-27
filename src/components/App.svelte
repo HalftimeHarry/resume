@@ -194,7 +194,7 @@
 				<Hideable>
 					<h2 class="text-2xl print:text-4xl uppercase text-left"><span aria-hidden="true" class="mr-2">📄</span>Documents</h2>
 					<hr />
-					<ul class="text-left list-disc pl-8">
+					<ul class="text-left list-disc pl-8 docs-list">
 						{#each documents as doc}
 							<Hideable hide={doc.hide}>
 								<li>
@@ -275,14 +275,21 @@
 		}
 
 		section hr {
-			@apply mt-0 mb-3;
+		@apply mt-0 mb-3;
+		}
+		/* Append link URLs for documents when printing */
+		.docs-list a::after {
+			content: " (" attr(href) ")";
+			font-weight: normal;
+			font-size: 90%;
+			color: inherit;
 		}
 	}
-
+ 
 	/* Print page size/margins */
 	@page {
 		size: letter;
 		margin: 0.25in;
 	}
-
+ 
 </style>
