@@ -7,6 +7,7 @@
 	import Work from './Work.svelte';
 
 	let profile: IProfileResp;
+	let isDark = false;
 
 	$: dataLink = `${sourceLink}/blob/main/static/data/profile.json`;
 	$: ({
@@ -21,7 +22,30 @@
 		resumeUrl: { sourceLink = '', fullVersionLink = '' } = {}
 	} = profile || {});
 
-	onMount(async () => (profile = await fetchResumeProfile()));
+	onMount(async () => {
+		profile = await fetchResumeProfile();
+		// init theme
+		isDark = (localStorage.getItem('theme') || '') === 'dark';
+		applyTheme();
+		// ensure print happens in light mode
+		window.addEventListener('beforeprint', () => {
+			document.documentElement.classList.remove('dark');
+		});
+		window.addEventListener('afterprint', () => {
+			applyTheme();
+		});
+	});
+
+	function applyTheme() {
+		if (isDark) document.documentElement.classList.add('dark');
+		else document.documentElement.classList.remove('dark');
+	}
+
+	function toggleTheme() {
+		isDark = !isDark;
+		localStorage.setItem('theme', isDark ? 'dark' : 'light');
+		applyTheme();
+	}
 
 	async function fetchResumeProfile() {
 		const resp = await fetch('/data/profile.json');
@@ -35,21 +59,23 @@
 	<Kofi name={intro.github} />
 {/if}
 
-<header class="web-only text-center p-4 sm:p-6 bg-green-400 text-white w-screen">
-	<h1 class="text-4xl">Resume</h1>
-	<h3>
-		<button on:click={() => window.print()} class="underline text-lg">[Print]</button>
-	</h3>
-	<p>
-		Printer-friendly standard résumé, any HTML tags with <code>web-only</code> CSS class will be hidden
-		on print.
-	</p>
-	<p>You can click at any sections or lines hide some information before printing.</p>
-	<a href={sourceLink} target="_blank" rel="noopener">[Source]</a>
-	<a href={dataLink} target="_blank" rel="noopener">[Data]</a>
+<header class="web-only text-center p-4 sm:p-6 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100 w-screen">
+	<div class="flex items-center justify-between max-w-screen-xl mx-auto">
+		<h1 class="text-3xl sm:text-4xl">Resume</h1>
+		<div class="flex items-center gap-4">
+			<button on:click={() => window.print()} class="underline text-sm sm:text-lg">Print</button>
+			<button
+				on:click={toggleTheme}
+				class="px-3 py-1 rounded border border-gray-300 dark:border-gray-600 text-sm"
+				aria-label="Toggle dark mode"
+			>
+				{isDark ? 'Light mode' : 'Dark mode'}
+			</button>
+		</div>
+	</div>
 </header>
 
-<main class="text-center p-4 m-0 md:m-8 xl:mx-auto max-w-screen-xl">
+<main class="text-center p-4 m-0 md:m-8 xl:mx-auto max-w-screen-xl dark:bg-gray-900 dark:text-gray-100">
 	<Intro {...intro} />
 
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 print:block print-cols">
