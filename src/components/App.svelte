@@ -304,6 +304,13 @@
 			display: none;
 		}
 
+		/* Hide empty sections when their content is omitted */
+		section:has(> :global(.web-only)) {
+			display: none;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+
 		/* Use full page width and reduce outer constraints */
 		main {
 			margin: 0;
@@ -328,17 +335,17 @@
 			break-inside: avoid;
 		}
 
-		/* Force a new page before Projects section */
+		/* Projects: allow natural flow to reduce blank space when sections are omitted */
 		.projects-section {
-			break-before: page;
-			page-break-before: always; /* legacy */
-			margin-top: 0.35in;
+			break-before: auto;
+			page-break-before: auto; /* legacy */
+			margin-top: 0.2in;
 		}
 
-		/* Push Work section to new column and add top spacing */
+		/* Work: allow natural column flow to avoid empty leading columns */
 		.work-section {
-			break-before: column;
-			margin-top: 0.35in;
+			break-before: auto;
+			margin-top: 0.2in;
 		}
 
 		/* Add a page break after specific bullet in Red Tracton’s, to separate nicely */
